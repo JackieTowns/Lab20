@@ -71,18 +71,42 @@ SELECT FirstName FROM employees WHERE ReportsTo = 'Andrew';
 
 -- Create Student
 CREATE TABLE `student` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `class_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  `class_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+SELECT * FROM db_demos.student;
+
+INSERT INTO student( name, class_id) 
+Values('G. Washington', 1); 
+
+INSERT INTO student(name, class_id) 
+Values( 'M. Gandhi', 1); 
+
+INSERT INTO student(name, class_id) 
+Values('N. Mandela', NULL); 
+
+INSERT INTO student(name, class_id) 
+Values('Q. Victoria', 2);
 
 -- Create Class 
 CREATE TABLE `class` (
-  `id` int(11) NOT NULL,
-  `title` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+SELECT * FROM db_demos.class;
+
+INSERT INTO class (title) 
+VALUES('Front-End'); 
+
+INSERT INTO class (title) 
+VALUES('Java'); 
+
+INSERT INTO class (title) 
+VALUES('.NET');
 
 
-
-.
