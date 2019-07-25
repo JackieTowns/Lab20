@@ -23,7 +23,6 @@ SELECT *  FROM customers ORDER BY Country, City ASC;
 INSERT INTO customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, Image, ImageThumbnail )
 VALUES ('LION', 'Great Company', 'Johnny Sing', 'Owner', '226 WhateverRoad', 'Seoul', 'NULL', '12209', 'South Korea', '(313) 435-7654', 'NULL', 'NULL', 'NULL');
 
-
 -- 9
 SELECT* FROM orders; 
 SET SQL_SAFE_UPDATES = 0; 
@@ -47,27 +46,28 @@ SELECT MAX (quantity) FROM `order details` GROUP BY OrderID; ;
 SELECT * FROM orders WHERE CustomerID = 10290;
 
 -- 14 Inner
-SELECT Orders.CustomerID, Customers.CustomerID
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+
+ SELECT * FROM orders
+INNER JOIN customers ON orders.CustomerID = customers.CustomerID;
 
 -- 14 Left
-SELECT Customers.CompanyName, Orders.ShipName
-FROM Customers
-LEFT JOIN Orders ON Customers.CompanyName = Orders.ShipName
-ORDER BY Customers.CompanyName;
+
+ SELECT * FROM orders
+ LEFT JOIN customers ON orders.ShipPostalCode = customers.PostalCode;
 
 -- 14 Right
-SELECT Orders.OrderID, customers.companyName
-FROM Orders
-RIGHT JOIN customers ON Orders.CustomerID = Customers.CustomerID
-ORDER BY Orders.OrderID;
+
+SELECT * FROM orders
+RIGHT JOIN customers ON orders.CustomerID = customers.CustomerID;
 
 -- 15
 SELECT FirstName FROM employees WHERE ReportsTo IS NULL;  
 
 -- 16
-SELECT FirstName FROM employees WHERE ReportsTo = 'Andrew'; 
+SELECT FirstName FROM employees WHERE ReportsTo = 2; 
+
+
+
 
 -- Create Student
 CREATE TABLE `student` (
@@ -91,6 +91,8 @@ Values('N. Mandela', NULL);
 INSERT INTO student(name, class_id) 
 Values('Q. Victoria', 2);
 
+
+
 -- Create Class 
 CREATE TABLE `class` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -108,5 +110,8 @@ VALUES('Java');
 
 INSERT INTO class (title) 
 VALUES('.NET');
+
+
+
 
 
