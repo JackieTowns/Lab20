@@ -1,0 +1,112 @@
+-- 1
+SELECT* FROM customers; 
+
+-- 2 
+SELECT country FROM customers GROUP BY country; 
+
+-- 3
+SELECT * FROM customers WHERE customerID LIKE 'BL%'; 
+
+-- 4
+SELECT * FROM orders LIMIT 100;
+
+-- 5
+SELECT * FROM customers WHERE PostalCode IN( '1010', '3012', '12209', '05023');   
+
+-- 6 
+SELECT * FROM orders WHERE ShipRegion IS NOT NULL; 
+
+-- 7 
+SELECT *  FROM customers ORDER BY Country, City ASC; 
+
+-- 8 
+INSERT INTO customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, Image, ImageThumbnail )
+VALUES ('LION', 'Great Company', 'Johnny Sing', 'Owner', '226 WhateverRoad', 'Seoul', 'NULL', '12209', 'South Korea', '(313) 435-7654', 'NULL', 'NULL', 'NULL');
+
+
+-- 9
+SELECT* FROM orders; 
+SET SQL_SAFE_UPDATES = 0; 
+UPDATE orders SET ShipRegion = 'EuroZone' WHERE ShipCountry = 'France'; 
+
+-- 10
+SELECT* FROM `order details`; 
+DELETE FROM `order details` WHERE Quantity = 1;
+
+-- 11
+SELECT AVG(Quantity) FROM `order details`; 
+SELECT MIN(Quantity) FROM `order details`;
+SELECT MAX(Quantity) FROM `order details`;
+
+-- 12
+SELECT AVG(quantity) FROM `order details` GROUP BY OrderID; 
+SELECT MIN (quantity) FROM `order details` GROUP BY OrderID; ; 
+SELECT MAX (quantity) FROM `order details` GROUP BY OrderID; ;
+
+-- 13
+SELECT * FROM orders WHERE CustomerID = 10290;
+
+-- 14 Inner
+SELECT Orders.CustomerID, Customers.CustomerID
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+
+-- 14 Left
+SELECT Customers.CompanyName, Orders.ShipName
+FROM Customers
+LEFT JOIN Orders ON Customers.CompanyName = Orders.ShipName
+ORDER BY Customers.CompanyName;
+
+-- 14 Right
+SELECT Orders.OrderID, customers.companyName
+FROM Orders
+RIGHT JOIN customers ON Orders.CustomerID = Customers.CustomerID
+ORDER BY Orders.OrderID;
+
+-- 15
+SELECT FirstName FROM employees WHERE ReportsTo IS NULL;  
+
+-- 16
+SELECT FirstName FROM employees WHERE ReportsTo = 'Andrew'; 
+
+-- Create Student
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+SELECT * FROM db_demos.student;
+
+INSERT INTO student( name, class_id) 
+Values('G. Washington', 1); 
+
+INSERT INTO student(name, class_id) 
+Values( 'M. Gandhi', 1); 
+
+INSERT INTO student(name, class_id) 
+Values('N. Mandela', NULL); 
+
+INSERT INTO student(name, class_id) 
+Values('Q. Victoria', 2);
+
+-- Create Class 
+CREATE TABLE `class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+SELECT * FROM db_demos.class;
+
+INSERT INTO class (title) 
+VALUES('Front-End'); 
+
+INSERT INTO class (title) 
+VALUES('Java'); 
+
+INSERT INTO class (title) 
+VALUES('.NET');
+
+
