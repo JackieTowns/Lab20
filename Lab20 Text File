@@ -45,7 +45,7 @@ SELECT MAX (quantity) FROM `order details` GROUP BY OrderID; ;
 -- 13
 SELECT * FROM orders WHERE CustomerID = 10290;
 
--- 14 Inner
+-- 14 Inner (830 rows) 
 
  SELECT * FROM orders
 INNER JOIN customers ON orders.CustomerID = customers.CustomerID;
@@ -54,10 +54,16 @@ INNER JOIN customers ON orders.CustomerID = customers.CustomerID;
 
  SELECT * FROM orders
  LEFT JOIN customers ON orders.ShipPostalCode = customers.PostalCode;
+ 
+SELECT * FROM orders
+LEFT JOIN customers ON orders.CustomerID = customers.CustomerID;
 
 -- 14 Right
 
 SELECT * FROM orders
+RIGHT JOIN customers ON orders.CustomerID = customers.CustomerID;
+
+ SELECT * FROM orders
 RIGHT JOIN customers ON orders.CustomerID = customers.CustomerID;
 
 -- 15
